@@ -1,0 +1,33 @@
+.body__main{
+    width: 100%;
+    height: 100%;
+    background-color: #FDFAF4;
+}
+
+ul.navigation__primary {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #383D3F;
+}
+
+ul.navigation__primary li {
+    float: left;
+}
+
+ul.navigation__primary li a {
+    display: block;
+    color: #FDFAF4;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.navigation__primary li a:hover:not(.active) {
+    background-color: #868E8E;
+}
+
+ul.navigation__primary .active {
+    background-color: #345D74;
+}

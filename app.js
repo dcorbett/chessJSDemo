@@ -4,24 +4,22 @@
 // except for 'app' ones, which are in a sibling
 // directory.
 requirejs.config({
-    baseUrl: 'lib',
+    baseUrl: 'src/js',
     paths: {
-        app: '../app',
-        jquery: 'jquery.min',
-        backbone: 'backbone-min',
-        text: 'text',
-        underscore: 'underscore-min',
-        main: '../app/main'
+        jquery: '../../lib/jquery.min',
+        backbone: '../../lib/backbone-min',
+        text: '../../lib/text',
+        underscore: '../../lib/underscore-min'
     }
 });
 
-// Start loading the main app file. Put all of
+// Start loading the application file. Put all of
 // your application logic in there.
-//requirejs(['app/main']);
 requirejs([
     'text',
     'jquery',
     'underscore',
     'backbone',
-    'main'
+    '../application',
+    'routers/application.router'
 ]);

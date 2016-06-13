@@ -1,0 +1,115 @@
+.body__main{
+    width: 100%;
+    height: 100%;
+    background-color: #FDFAF4;
+}
+
+.body__content{
+    padding: 30px;
+}
+
+ul.navigation__primary {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #383D3F;
+}
+
+ul.navigation__primary li {
+    float: left;
+}
+
+ul.navigation__primary li a {
+    display: block;
+    color: #FDFAF4;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.navigation__primary li a:hover:not(.active) {
+    background-color: #868E8E;
+}
+
+ul.navigation__primary .active {
+    background-color: #345D74;
+}
+
+/*Board CSS*/
+.board {
+    width: 320px;
+    height: 320px;
+    margin: 0.5em;
+    border: 2px solid #808080;
+    position: relative;
+}
+
+.board div {
+    float: left;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+}
+
+.board div:nth-child(-2n+8), 
+.board div:nth-child(8) ~ div:nth-child(-2n+15), 
+.board div:nth-child(16) ~ div:nth-child(-2n+24), 
+.board div:nth-child(24) ~ div:nth-child(-2n+31), 
+.board div:nth-child(32) ~ div:nth-child(-2n+40), 
+.board div:nth-child(40) ~ div:nth-child(-2n+47), 
+.board div:nth-child(48) ~ div:nth-child(-2n+56), 
+.board div:nth-child(56) ~ div:nth-child(-2n+63) {
+    background-color: #000;
+}
+
+.a1::after, 
+.b1::after, 
+.c1::after, 
+.d1::after, 
+.e1::after, 
+.f1::after, 
+.g1::after, 
+.h1::after {
+    position: relative;
+    top: 35%;
+    right: 20px;
+}
+
+.a1::after{
+    right: 30px;
+}
+
+.a1::before, 
+.a2::before, 
+.a3::before, 
+.a4::before, 
+.a5::before, 
+.a6::before, 
+.a7::before, 
+.a8::before {
+    position: relative;
+    left: 43%;
+    bottom: -110%;
+}
+
+.a1::after { content: "1";}
+.b1::after { content: "2";}
+.c1::after { content: "3";}
+.d1::after { content: "4";}
+.e1::after { content: "5";}
+.f1::after { content: "6";}
+.g1::after { content: "7";}
+.h1::after { content: "8";}
+
+.a1::before { content: "A";}
+.a2::before { content: "B";}
+.a3::before { content: "C";}
+.a4::before { content: "D";}
+.a5::before { content: "E";}
+.a6::before { content: "F";}
+.a7::before { content: "G";}
+.a8::before { content: "H";}
+
+
+

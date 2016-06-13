@@ -1,0 +1,21 @@
+Chess board architecure
+
+The board should just have squares
+The square should know how to render iteself
+The square should know how to dispaly a piece
+
+State?
+State should be an array of pieces?
+The board has a view
+The board view should just render
+The board also has pieces
+Pieces should render secondly
+The board logic should just change the positioning of the pieces when given instructions
+
+Board view
+Board HTML
+Each div should have a class with its location ID
+Collection called board
+collection called pieces
+model called piece
+model called square?

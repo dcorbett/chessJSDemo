@@ -19,3 +19,19 @@ Collection called board
 collection called pieces
 model called piece
 model called square?
+
+
+Im  NOT going to make a server, Instead I will save a json config with PGN games converted to FEN format
+The setting will control the timing that Render is called
+
+
+The board will take a FEN string of the next state and render the  board according to the string
+
+React only cares about the render
+Backbone cares about the storage as well
+
+I will attempt this board in 2 diff ways
+
+Nested array - Updating Raw values in array, render the board 
+
+Nested objects - Creating the board via an array of pieces and having the board proccess the string

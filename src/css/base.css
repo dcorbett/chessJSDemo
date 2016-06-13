@@ -60,9 +60,9 @@ ul.navigation__primary .active {
 .board div:nth-child(40) ~ div:nth-child(-2n+47), 
 .board div:nth-child(48) ~ div:nth-child(-2n+56), 
 .board div:nth-child(56) ~ div:nth-child(-2n+63) {
-    background-color: #000;
+    background-color: #808080;
 }
-
+/*
 .a1::after, 
 .b1::after, 
 .c1::after, 
@@ -72,12 +72,12 @@ ul.navigation__primary .active {
 .g1::after, 
 .h1::after {
     position: relative;
-    top: 35%;
-    right: 20px;
+    bottom: -110%;
+    left: 40%;
 }
 
 .a1::after{
-    right: 30px;
+    left: 10%;
 }
 
 .a1::before, 
@@ -89,8 +89,8 @@ ul.navigation__primary .active {
 .a7::before, 
 .a8::before {
     position: relative;
-    left: 43%;
-    bottom: -110%;
+    right: 43%;
+    top: 35%;
 }
 
 .a1::after { content: "1";}
@@ -110,6 +110,47 @@ ul.navigation__primary .active {
 .a6::before { content: "F";}
 .a7::before { content: "G";}
 .a8::before { content: "H";}
+*/
+
+
+/*Piece CSS*/
+.board .piece {
+    background-color: transparent;
+}
+.piece {
+    background: url('/assets/pieces_chess.svg') no-repeat 0px 0px;
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+}
+
+.king__white { background-position: -5px -5px;}
+.queen__white {background-position: -48px -4px;}
+.bishop__white {background-position: -95px -4px;}
+.knight__white {background-position: -140px -6px;}
+.rook__white {background-position: -188px -8px;}
+.pawn__white {background-position: -234px -8px;}
+
+.king__black { background-position: -5px -50px;}
+.queen__black {background-position: -48px -50px;}
+.bishop__black {background-position: -95px -49px;}
+.knight__black {background-position: -140px -51px;}
+.rook__black {background-position: -188px -53px;}
+.pawn__black {background-position: -234px -53px;}
+
+/* Room CSS*/
+
+.room{
+    width: 600px;
+    height: 600px;
+    display: flex;
+}
+
+
+
+
+
+
 
 
 

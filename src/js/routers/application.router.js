@@ -1,10 +1,12 @@
 define([
+    "jquery",
     "backbone",
-    "views/board"
+    "views/room"
   ],
   function(
+    $,
     Backbone,
-    Board
+    Room
   ) { 
   return Backbone.Router.extend({
     routes: {
@@ -15,7 +17,7 @@ define([
     },
 
     initialize: function() {
-      this.board = new Board();
+      this.room = new Room({el: $('.body__content')});
     },
 
     loadBoard: function() {
@@ -28,7 +30,17 @@ define([
 
       //Append new board view
 
-      this.board.render();
+      // this.board.render();
+      // this.board.update('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+      // _.delay(this.board.update, 1000, 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1');
+      // _.delay(this.board.update, 2000, 'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2');
+      
+
+      //I will have to create a hall that contains multiple rooms
+      this.room.render();
+      this.room.setup();
+      this.room.start();
+      
 
     },
 

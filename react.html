@@ -1,23 +1,21 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="src/css/base.css" media="all" />
-    <script data-main="app" src="lib/require.js"></script>
+    <script src="lib/react/react.js"></script>
+    <script src="lib/react/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
 </head>
     <body>
         <div class="body__main">
             <ul class="navigation__primary">
               <li><a href="#board">Single Board</a></li>
-              <li><a href="#room">Chess Room</a></li>
-              <li><a href="#settings">Engine Settings</a></li>
               <li style="float:right"><a class="active" href="#resources">Resources</a></li>
             </ul>
-            <div class="body__content">
-                The board will go here
-                The room will go here
-                Settings will go here
+            <div class="body__content"> React board will go here
+             <script type="text/babel" src="src/js/react/board.js"></script>
             </div>
 
-            <div id="app"></div>
+            <div id="container"></div>
         </div>
     </body>
 </html>

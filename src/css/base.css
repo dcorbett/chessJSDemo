@@ -141,9 +141,10 @@ ul.navigation__primary .active {
 /* Room CSS*/
 
 .room{
-    width: 600px;
-    height: 600px;
+    width: 1400px;
+    /*height: 600px;*/
     display: flex;
+    flex-wrap: wrap;
 }
 
 

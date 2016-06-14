@@ -1,0 +1,17 @@
+After Backbone was set up in a similar fashion to our webapps I then tried to intergrate React with limited success
+
+The problem was JSX. 
+
+JSX is typically used with Browserify or webpack. Using require means using a hacked version of JSX. Literally a HACKED version.
+You CAN use react, you just will not be able to use JSX transformations
+
+I then rebuild a different demo soley for React 
+
+
+Going in I had a rough Idea of What I wanted to do and how to do it.
+Backbone was just easier to express it
+
+At some point I was ready to cheat and use a Pre made board built for reversi. 
+This did not work because The code base was in ES6. My codebase was still in ES5, My project didn't have babel installed. It was basically unbuilt JS, no Gulp, no node just straight JS.
+The node_modules build folder had over 30 JS folders holding the dependencies to build the project.
+I don't really care about setup but this is a bit much for my demo and I could not use that, It felt dirty.

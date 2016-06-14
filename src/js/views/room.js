@@ -21,7 +21,7 @@ define([
     initialize: function()
     {
       this.settings = {};
-      this.settings.gameCount = 4;
+      this.settings.gameCount = 12;
       this.settings.moveDuration = 100;
       this.games = [];
       this.gameInfo = GameInfo;

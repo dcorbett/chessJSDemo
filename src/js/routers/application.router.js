@@ -1,7 +1,8 @@
 define([
     "jquery",
     "backbone",
-    "views/room"
+    "views/room",
+
   ],
   function(
     $,
@@ -36,10 +37,12 @@ define([
       // _.delay(this.board.update, 2000, 'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2');
       
 
+      /**/
       //I will have to create a hall that contains multiple rooms
       this.room.render();
       this.room.setup();
       this.room.start();
+      
       
 
     },

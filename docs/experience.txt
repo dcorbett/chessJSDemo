@@ -15,3 +15,14 @@ At some point I was ready to cheat and use a Pre made board built for reversi.
 This did not work because The code base was in ES6. My codebase was still in ES5, My project didn't have babel installed. It was basically unbuilt JS, no Gulp, no node just straight JS.
 The node_modules build folder had over 30 JS folders holding the dependencies to build the project.
 I don't really care about setup but this is a bit much for my demo and I could not use that, It felt dirty.
+
+Uppercase and lower case naming is important. I made a class name lower case and it wasn't recognized
+Render has validation around its variables
+
+Elements MUST have containers. Element must start in a div etc
+
+React tries to enforece what MCUI does. Make Components reusable and consistant.
+
+It accomplishes this without a team and all in code
+
+DOMS are first class citizens not to be messed with

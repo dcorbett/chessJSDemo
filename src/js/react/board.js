@@ -3,20 +3,6 @@ Create a row
 A rows create boards
 boards create rooms
 */
-
-/*
-
-<div class="a8"></div> <div class="b8"></div> <div class="c8"></div> <div class="d8"></div> <div class="e8"></div> <div class="f8"></div> <div class="g8"></div> <div class="h8"></div>
-<div class="a7"></div> <div class="b7"></div> <div class="c7"></div> <div class="d7"></div> <div class="e7"></div> <div class="f7"></div> <div class="g7"></div> <div class="h7"></div>
-<div class="a6"></div> <div class="b6"></div> <div class="c6"></div> <div class="d6"></div> <div class="e6"></div> <div class="f6"></div> <div class="g6"></div> <div class="h6"></div>
-<div class="a5"></div> <div class="b5"></div> <div class="c5"></div> <div class="d5"></div> <div class="e5"></div> <div class="f5"></div> <div class="g5"></div> <div class="h5"></div>
-<div class="a4"></div> <div class="b4"></div> <div class="c4"></div> <div class="d4"></div> <div class="e4"></div> <div class="f4"></div> <div class="g4"></div> <div class="h4"></div>
-<div class="a3"></div> <div class="b3"></div> <div class="c3"></div> <div class="d3"></div> <div class="e3"></div> <div class="f3"></div> <div class="g3"></div> <div class="h3"></div>
-<div class="a2"></div> <div class="b2"></div> <div class="c2"></div> <div class="d2"></div> <div class="e2"></div> <div class="f2"></div> <div class="g2"></div> <div class="h2"></div>
-<div class="a1"></div> <div class="b1"></div> <div class="c1"></div> <div class="d1"></div> <div class="e1"></div> <div class="f1"></div> <div class="g1"></div> <div class="h1"></div>
-
- */
-
 var positions = [
         ['r','n','b','q','k','b','n','r'],
         ['p','p','p','p','p','p','p','p'],
@@ -29,43 +15,263 @@ var positions = [
       ];
 
 var ChessBoard = React.createClass({
-  tablerows: function() {
-    return this.props.arr.map(rows => {
-      var row = rows.map(cell => <div>{cell}</div>); 
-      return(row);
+  createBoard: function() {
+    var that = this;
+    var board = this.props.positions.map(function (row, index) {
+      return that.boardRows(row);
     });
+    
+    return board;
   },
+
+  boardRows: function(row) {
+    var rows, that = this;
+    rows = row.map(function(cell, index){
+      return that.boardCell(cell);
+    });
+    return rows;
+  },
+
+  boardCell: function(cell) {
+    var piece = this.getPieceUI(cell);
+    return <div>{piece}</div>;
+  },
+
+   getPieceUI: function(symbol) {
+    var UI = '',
+            code = symbol.charCodeAt(0),
+            piece,
+            color,
+            cssValue,
+            cssClass;
+
+        if (isNaN(code)) {
+          return '';
+        }
+
+        switch (code) {
+          //r
+          case 112:
+          case 80:
+            piece = "pawn";
+          break;
+
+          //r
+          case 114:
+          case 82:
+            piece = "rook";
+          break;
+
+          //n
+          case 110:
+          case 78:
+            piece = "knight";
+          break;
+
+          //b
+          case 98:
+          case 66:
+            piece = "bishop";
+          break;
+
+          //q
+          case 113:
+          case 81:
+            piece = "queen";
+          break;
+
+          //k
+          case 107:
+          case 75:
+            piece = "king";
+          break;
+        }
+
+        color = (code > 97) ? 'black' : 'white';
+        cssClass = "piece "+piece+"__"+color;
+
+        return <div className={cssClass}></div>;
+   },
   render: function() {
-    return <div classname="board">{this.tablerows()}</div>;
+    return <div className ="single board" >{this.createBoard()}</div>;
   }
 });
 
 ReactDOM.render(
-  <ChessBoard arr={positions} />,
+  <ChessBoard positions={positions} />,
   document.getElementById('container')
 );
 
-// var ProductList = React.createClass({
-//   render: function () {
-//     var products = this.props.products.map(function (product, index) {
-//       return (
-//         <ProductItem
-//           key={index}
-//           name={product.name}
-//           price={product.price}
-//         />
-//       );
-//     });
-    
-//     return (
-//       <table>
-//         {products}
-//       </table>
-//     );
-//   }
-// });
+var update = function(fenStr)
+  {
+    this.state = this._parseFENToDoubleArray(fenStr);
+  }
 
-// Could come from an API, LocalStorage, another component, etc...
+    //This should return a nested arrray of the status of the board
+    //Starting position
+    // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+var _parseFENToDoubleArray = function(fenStr)
+{
+  var boardArray = [], 
+      tempFen = "",
+      convertedRow;
+  tempFen = this._getFENPositions(fenStr);
+  tempFen = this._getFENRows(tempFen);
+  _.each(tempFen, function(row){
+    convertedRow = this._convertFENRowToArray(row);
+    boardArray.push(convertedRow);  
+  }, this)
 
+  return boardArray.reverse();
+}
 
-//ReactDOM.render(<Board positions={pos}/>, document.getElementById('container'));
+var _getFENPositions = function(fenStr)
+{
+  return fenStr.split(" ")[0];
+}
+
+var _getFENRows = function(fenStr)
+{
+  return fenStr.split("/");
+}
+
+//Should return an array of length 8
+var _convertFENRowToArray = function(fenStr)
+{
+  var i, symbol, code, fenArr = [];
+  i = fenStr.length;
+  
+  for (var i = 0; i < fenStr.length; i++) {
+    symbol = fenStr[i];
+    code = symbol.charCodeAt(0);
+
+    if(48 < code && code <= 57) {
+      while(symbol){
+        fenArr.push('');
+        --symbol;
+      }
+      continue;
+    }
+
+    //Regular chars
+    fenArr.push(symbol);
+  }
+
+  //if Array length isn't 8 through conversion error
+  return fenArr;
+}
+
+var updateBoard = function (step) {
+  ReactDOM.render(
+  <ChessBoard positions={movelist[step % 10]} />,
+  document.getElementById('container')
+);
+
+_.delay(updateBoard, 1000, step + 1);
+
+}
+
+_.delay(updateBoard, 1000, 0);
+
+var movelist = [
+[
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','p','p','p'],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['P','P','P','P','P','P','P','P'],
+  ['R','N','B','Q','K','B','N','R'],
+],
+[
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','p','p','p'],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','P','','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','Q','K','B','N','R'],
+],
+[
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','','p','p'],
+  ['','','','','','','',''],
+  ['','','','','','p','',''],
+  ['','','','','','','',''],
+  ['','','','','P','','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','Q','K','B','N','R'],
+],
+[
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','','p','p'],
+  ['','','','','','','',''],
+  ['','','','','','p','',''],
+  ['','','','','','','',''],
+  ['','','','','P','Q','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','','K','B','N','R'],
+],
+[
+  ['r','n','b','q','k','b','','r'],
+  ['p','p','p','p','p','','p','p'],
+  ['','','','','','n','',''],
+  ['','','','','','p','',''],
+  ['','','','','','','',''],
+  ['','','','','P','Q','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','','K','B','N','R'],
+],
+[
+  ['r','n','b','q','k','b','','r'],
+  ['p','p','p','p','p','','p','p'],
+  ['','','','','','n','',''],
+  ['','','','','','Q','',''],
+  ['','','','','','','',''],
+  ['','','','','P','','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','','K','B','N','R'],
+],
+[
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','','p','p'],
+  ['','','','','','','',''],
+  ['','','','','','Q','',''],
+  ['','','','','','','',''],
+  ['','','','','P','','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','','K','B','N','R'],
+],
+[
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','','p','p'],
+  ['','','','','','','',''],
+  ['','','','','','Q','',''],
+  ['','','B','','','','',''],
+  ['','','','','P','','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','','K','','N','R'],
+],
+[
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','','','p'],
+  ['','','','','','','p',''],
+  ['','','','','','Q','',''],
+  ['','','B','','','','',''],
+  ['','','','','P','','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','','K','','N','R'],
+],
+[
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','Q','','p'],
+  ['','','','','','','p',''],
+  ['','','','','','','',''],
+  ['','','B','','','','',''],
+  ['','','','','P','','',''],
+  ['P','P','P','P','','P','P','P'],
+  ['R','N','B','','K','','N','R'],
+],
+]

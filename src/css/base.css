@@ -62,6 +62,17 @@ ul.navigation__primary .active {
 .board div:nth-child(56) ~ div:nth-child(-2n+63) {
     background-color: #808080;
 }
+
+.single {
+    margin-left:35%;
+}
+
+.boardTitle {
+    margin-left: 35%;
+    font-weight: bold;
+    font-size: 30px;
+    padding-left: 30px;
+}
 /*
 .a1::after, 
 .b1::after, 
